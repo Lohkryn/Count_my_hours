@@ -1,7 +1,9 @@
-![DEMO](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGl4b3B4c2k4MDdhM2hta3RpZGozNWo0NjdwZ3ZuYnlyZG45ZWwzZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/UoYVe41j58xs663TMv/giphy.gif)
+<p align="center">
+  <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGl4b3B4c2k4MDdhM2hta3RpZGozNWo0NjdwZ3ZuYnlyZG45ZWwzZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/UoYVe41j58xs663TMv/giphy.gif" alt="DEMO" width="300">
 
-# Compteur d'horaire par localisation 
 
+<h1 align="center">Compteur d'horaire par localisation</h1> 
+</p>
 App iPhone (SwiftUI, iOS 17 minimum) qui compte automatiquement le temps passé dans des lieux grâce au geofencing.
 
 ## Ce qu'il y a dedans
