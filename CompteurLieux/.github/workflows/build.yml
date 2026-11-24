@@ -1,0 +1,48 @@
+# Compile l'app sur un Mac de GitHub et publie le fichier .ipa dans "Releases".
+name: Compiler l'app
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Installer XcodeGen
+        run: brew install xcodegen
+
+      - name: Générer le projet Xcode
+        run: xcodegen generate
+
+      - name: Compiler (sans signature)
+        run: |
+          xcodebuild \
+            -project CompteurLieux.xcodeproj \
+            -target CompteurLieux \
+            -configuration Release \
+            -sdk iphoneos \
+            SYMROOT="$PWD/build" \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            build
+
+      - name: Fabriquer le .ipa
+        run: |
+          mkdir -p Payload
+          cp -R build/Release-iphoneos/CompteurLieux.app Payload/
+          zip -qr CompteurLieux.ipa Payload
+
+      - name: Publier dans Releases
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.run_number }}
+          name: Version ${{ github.run_number }}
+          files: CompteurLieux.ipa
